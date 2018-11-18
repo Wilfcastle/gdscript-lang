@@ -1,0 +1,22 @@
+{
+  parserClass="com.wilfcastle.gdscript.parser.GDScriptParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="GDScript"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.wilfcastle.gdscript.psi"
+  psiImplPackage="com.wilfcastle.gdscript.impl"
+
+  elementTypeHolderClass="com.wilfcastle.gdscript.psi.GDScriptTypes"
+  elementTypeClass="com.wilfcastle.gdscript.psi.GDScriptElementType"
+  tokenTypeClass="com.wilfcastle.gdscript.psi.GDScriptTokenType"
+}
+
+gdScriptFile ::= item_*
+
+private item_ ::= (assignment)
+
+private literal_ ::= (NUMBER)
+
+assignment ::= (VAR IDENTIFIER EQUALS literal_)

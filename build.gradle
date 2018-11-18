@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.intellij' version '0.3.12'
 }
 
-group 'com.golmschenk'
+group 'com.wilfcastle'
 version '0.1.0'
 
 sourceCompatibility = 1.8
@@ -14,6 +14,18 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = [
+                    "$projectDir/src/main/java",
+                    "$projectDir/src/main/gen",
+            ]
+            include '**/*.java'
+        }
+    }
 }
 
 intellij {

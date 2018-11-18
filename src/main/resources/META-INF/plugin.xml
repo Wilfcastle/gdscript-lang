@@ -1,10 +1,10 @@
 <idea-plugin>
-    <id>com.golmschenk.gdscript-lang</id>
+    <id>com.wilfcastle.gdscript-lang</id>
     <name>GDScript</name>
     <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
 
     <description><![CDATA[
-    Language suppose for Godot's GDScript.
+    Language support for Godot's GDScript.
     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
@@ -14,7 +14,10 @@
     -->
 
     <extensions defaultExtensionNs="com.intellij">
-        <fileTypeFactory implementation="com.golmschenk.gdscript.GDScriptFileTypeFactory"/>
+        <fileTypeFactory implementation="com.wilfcastle.gdscript.GDScriptFileTypeFactory"/>
+        <lang.parserDefinition language="GDScript" implementationClass="com.wilfcastle.gdscript.GDScriptParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="GDScript" implementationClass="com.wilfcastle.gdscript.GDScriptSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="com.wilfcastle.gdscript.GDScriptColorSettingsPage"/>
     </extensions>
 
     <actions>
