@@ -1,7 +1,12 @@
 plugins {
     id 'java'
     id 'org.jetbrains.intellij' version '0.3.12'
+    id "org.jetbrains.grammarkit" version "2018.2.2"
 }
+
+apply plugin: 'org.jetbrains.grammarkit'
+
+import org.jetbrains.grammarkit.tasks.*
 
 group 'com.wilfcastle'
 version '0.1.0'
@@ -31,6 +36,37 @@ sourceSets {
 intellij {
     version '2018.2.4'
 }
+
+grammarKit {
+    // version of IntelliJ patched JFlex (see bintray link below), Default is 1.7.0-1
+    jflexRelease = '1.7.0-1'
+
+    // tag or short commit hash of Grammar-Kit to use (see link below). Default is 2017.1.6
+    grammarKitRelease = '6452fde524'
+}
+
+task generateGDScriptLexer(type: GenerateLexer) {
+    source = "src/main/resources/language/GDScript.flex"
+
+    targetDir = "$projectDir/src/main/gen/com/wilfcastle/gdscript/"
+    targetClass = "GDScriptLexer"
+
+    purgeOldFiles = true
+}
+
+task generateGDScriptParser(type: GenerateParser) {
+    source = "src/main/resources/language/GDScript.bnf"
+
+    targetRoot = 'src/main/gen'
+
+    pathToParser = '/com/wilfcastle/gdscript/parser/GDScriptParser.java'
+    pathToPsiRoot = '/com/wilfcastle/gdscript/psi'
+
+    purgeOldFiles = true
+}
+
+compileJava.dependsOn(generateGDScriptLexer, generateGDScriptParser)
+
 patchPluginXml {
     changeNotes """
       Add change notes here.<br>
