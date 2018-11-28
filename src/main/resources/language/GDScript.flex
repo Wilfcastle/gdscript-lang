@@ -1,8 +1,9 @@
 package com.wilfcastle.gdscript;
 
+import com.intellij.lexer.FlexLexer;
+import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IElementType;
 import com.wilfcastle.gdscript.psi.GDScriptTypes;
-import com.intellij.psi.TokenType;
 
 %%
 
@@ -38,19 +39,15 @@ KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
 
 ("var")                                                     { return GDScriptTypes.VAR; }
 
+({IDENTIFIER})                                              { return GDScriptTypes.IDENTIFIER; }
+
 ({NUMBER}|{HEX_NUMBER}|{FLOATING_NUMBER})                   { return GDScriptTypes.NUMBER; }
 
-<YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return GDScriptTypes.COMMENT; }
-
-<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return GDScriptTypes.KEY; }
-
-<YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return GDScriptTypes.SEPARATOR; }
+("=")                                                       { return GDScriptTypes.EQUALS; }
 
 <WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 
 <WAITING_VALUE> {WHITE_SPACE}+                              { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE; }
-
-<WAITING_VALUE> {FIRST_VALUE_CHARACTER}{VALUE_CHARACTER}*   { yybegin(YYINITIAL); return GDScriptTypes.VALUE; }
 
 ({CRLF}|{WHITE_SPACE})+                                     { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 

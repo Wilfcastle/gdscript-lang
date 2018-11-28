@@ -15,7 +15,7 @@
 
 gdScriptFile ::= item_*
 
-private item_ ::= (assignment)
+private item_ ::= (assignment|COMMENT)
 
 private literal_ ::= (NUMBER)
 

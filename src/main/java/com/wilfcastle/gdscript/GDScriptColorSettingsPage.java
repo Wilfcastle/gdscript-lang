@@ -13,9 +13,6 @@ import java.util.Map;
 
 public class GDScriptColorSettingsPage implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
-            new AttributesDescriptor("Key", GDScriptSyntaxHighlighter.KEY),
-            new AttributesDescriptor("Separator", GDScriptSyntaxHighlighter.SEPARATOR),
-            new AttributesDescriptor("Value", GDScriptSyntaxHighlighter.VALUE),
     };
 
     @Nullable
