@@ -25,11 +25,12 @@ HEX_DIGIT = [A-F0-9]
 HEX_NUMBER = "0x"{HEX_DIGIT}+
 FLOATING_NUMBER = {DIGIT}*"."{DIGIT}+
 
+COMMENT="#"[^\r\n]*
+
 CRLF=\R
 WHITE_SPACE=[\ \n\t\f]
 FIRST_VALUE_CHARACTER=[^ \n\f\\] | "\\"{CRLF} | "\\".
 VALUE_CHARACTER=[^\n\f\\] | "\\"{CRLF} | "\\".
-END_OF_LINE_COMMENT=("#"|"!")[^\r\n]*
 SEPARATOR=[:=]
 KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
 
@@ -44,6 +45,8 @@ KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
 ({NUMBER}|{HEX_NUMBER}|{FLOATING_NUMBER})                   { return GDScriptTypes.NUMBER; }
 
 ("=")                                                       { return GDScriptTypes.EQUALS; }
+
+({COMMENT})                                                 { return GDScriptTypes.COMMENT; }
 
 <WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 
