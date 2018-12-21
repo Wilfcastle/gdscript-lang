@@ -42,6 +42,8 @@ KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
 
 ("var")                                                     { return GDScriptTypes.VAR; }
 
+("const")                                                   { return GDScriptTypes.CONST; }
+
 ({IDENTIFIER})                                              { return GDScriptTypes.IDENTIFIER; }
 
 ({NUMBER}|{HEX_NUMBER}|{FLOATING_NUMBER})                   { return GDScriptTypes.NUMBER; }

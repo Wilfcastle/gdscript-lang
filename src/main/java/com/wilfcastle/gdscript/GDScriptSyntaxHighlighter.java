@@ -41,7 +41,7 @@ public class GDScriptSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] STRING_KEYS =
             createKeys(DefaultLanguageHighlighterColors.STRING);
 
-    private static final List<IElementType> KEYWORDS = Arrays.asList(GDScriptTypes.VAR);
+    private static final List<IElementType> KEYWORDS = Arrays.asList(GDScriptTypes.VAR, GDScriptTypes.CONST);
     private static final List<IElementType> OPERATORS = Arrays.asList(GDScriptTypes.EQUALS);
 
     @NotNull

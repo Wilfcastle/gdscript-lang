@@ -19,4 +19,6 @@ private item_ ::= (assignment|COMMENT)
 
 private literal_ ::= (NUMBER|STRING)
 
-assignment ::= (VAR IDENTIFIER EQUALS literal_)
+private declaration_keyword_ ::= (VAR|CONST)
+
+assignment ::= (declaration_keyword_ IDENTIFIER EQUALS literal_)
