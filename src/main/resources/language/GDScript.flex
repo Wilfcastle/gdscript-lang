@@ -27,6 +27,8 @@ FLOATING_NUMBER = {DIGIT}*"."{DIGIT}+
 
 COMMENT="#"[^\r\n]*
 
+STRING="\""[^\"]*"\""
+
 CRLF=\R
 WHITE_SPACE=[\ \n\t\f]
 FIRST_VALUE_CHARACTER=[^ \n\f\\] | "\\"{CRLF} | "\\".
@@ -47,6 +49,8 @@ KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
 ("=")                                                       { return GDScriptTypes.EQUALS; }
 
 ({COMMENT})                                                 { return GDScriptTypes.COMMENT; }
+
+({STRING})                                                  { return GDScriptTypes.STRING; }
 
 <WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 

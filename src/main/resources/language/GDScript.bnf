@@ -17,6 +17,6 @@ gdScriptFile ::= item_*
 
 private item_ ::= (assignment|COMMENT)
 
-private literal_ ::= (NUMBER)
+private literal_ ::= (NUMBER|STRING)
 
 assignment ::= (VAR IDENTIFIER EQUALS literal_)

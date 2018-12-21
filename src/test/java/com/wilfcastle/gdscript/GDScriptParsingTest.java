@@ -4,7 +4,7 @@ import com.intellij.testFramework.ParsingTestCase;
 
 public class GDScriptParsingTest extends ParsingTestCase {
     public GDScriptParsingTest() {
-        super("", "gdscript", new GDScriptParserDefinition());
+        super("", "gd", new GDScriptParserDefinition());
     }
 
     public void testParsingTestData() {
