@@ -17,10 +17,14 @@ gdScriptFile ::= item_*
 
 private item_ ::= (assignment|COMMENT)
 
-private literal_ ::= (NUMBER|STRING|array)
+private literal_ ::= (NUMBER|STRING|array|dict)
 
 private declaration_keyword_ ::= (VAR|CONST)
 
-array ::= (OPEN_SQ_BRACKET literal_ (COMMA literal_)* CLOSED_SQ_BRACKET)
+array ::= (OPEN_SQ_BRACKET (literal_ (COMMA literal_)*)? CLOSED_SQ_BRACKET)
+
+private dict_pair_ ::= (literal_ COLON literal_)
+
+dict ::= (OPEN_CURLY_BRACKET  ((dict_pair_) (COMMA dict_pair_)*)? CLOSED_CURLY_BRACKET)
 
 assignment ::= (declaration_keyword_ IDENTIFIER EQUALS literal_)

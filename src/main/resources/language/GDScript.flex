@@ -58,7 +58,13 @@ KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
 
 ("]")                                                       { return GDScriptTypes.CLOSED_SQ_BRACKET; }
 
+("{")                                                       { return GDScriptTypes.OPEN_CURLY_BRACKET; }
+
+("}")                                                       { return GDScriptTypes.CLOSED_CURLY_BRACKET; }
+
 (",")                                                       { return GDScriptTypes.COMMA; }
+
+(":")                                                       { return GDScriptTypes.COLON; }
 
 <WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 
